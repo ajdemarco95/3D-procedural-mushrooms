@@ -6,8 +6,8 @@ import { useEffect, useRef } from "react";
 
 function Mushroom() {
 
-    const geoRef = useRef();
-    const meshRef = useRef();
+    const tubeRef = useRef();
+    const tubeMesh = useRef();
 
   const curve = new THREE.CatmullRomCurve3( [
 	new THREE.Vector3( -10, 0, 10 ),
@@ -20,55 +20,20 @@ function Mushroom() {
 const points = curve.getPoints( 100 );
 
 
-useEffect(() => {
-    geoRef.current.setFromPoints(points)
-}, [])
-
-
 
 
 useFrame((state, delta) => {
-    // posRef.current.needsUpdate = true;
-    // geoRef.current.setFromPoints(points)
-    console.log(curve.points)
+    console.log(tubeRef.current)
+    // tubeRef.current.needsUpdate = true;
 })
 
 
 
   return (
     <>
-    <mesh ref={meshRef}>
-        <bufferGeometry ref={geoRef} >
-            {/* <bufferAttribute
-                ref={posRef}
-                attach='attributes-position'
-                array={positions}
-                count={positions.length / 3}
-                itemSize={3}
-            /> */}
-            {/* <bufferAttribute
-                attach='attributes-color'
-                array={colors}
-                count={colors.length / 3}
-                itemSize={3}
-            /> */}
-            {/* <bufferAttribute
-                attach='attributes-normal'
-                array={normals}
-                count={normals.length / 3}
-                itemSize={3}
-            /> */}
-            {/* <bufferAttribute
-                attach="index"
-                array={indices}
-                count={indices.length}
-                itemSize={1}
-            /> */}
-        </bufferGeometry>
-        <meshStandardMaterial
-            vertexColors
-            side={THREE.DoubleSide}
-        />
+    <mesh castShadow ref={tubeMesh}>
+        <tubeGeometry args={[curve, 40, 2, 8]} ref={tubeRef} />
+        <meshStandardMaterial color={"red"}/>
     </mesh>
 
     </>
