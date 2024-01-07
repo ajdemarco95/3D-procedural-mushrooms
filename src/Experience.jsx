@@ -1,18 +1,21 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import React from "react";
-
+import Lighting from './Lighting'
+import Mushroom from "./Mushroom";
 function Experience() {
   return (
-    <div className="w-full h-full fixed top-0 left-0">
+    <div className="w-full h-full fixed top-0 left-0  bg-slate-500">
       <Canvas>
         <OrbitControls />
-        <mesh>
+        <Lighting />
+        <Mushroom />
+
+        {/* <mesh>
           <boxGeometry args={[2, 2, 2]} />
           <meshStandardMaterial />
-        </mesh>
-        <ambientLight intensity={0.1} />
-        <directionalLight color="red" position={[0, 0, 5]} />
+        </mesh> */}
+
       </Canvas>
     </div>
   );
