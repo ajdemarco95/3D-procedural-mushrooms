@@ -44,7 +44,6 @@ function Mushroom(props) {
   const rotation = new THREE.Euler().setFromQuaternion(quaternion, "XYZ");
   //   rotation.x += Math.PI / 2; // Add 90 degrees rotation on X-axis
 
-
   /**********
    * RENDER *
    **********/
@@ -52,13 +51,13 @@ function Mushroom(props) {
   return (
     <group position={props.position}>
       <MushroomCap position={capPosition} rotation={rotation} />
-      <mesh
+      {/* <mesh
         position={capPosition}
         rotation={rotation}
       >
         <planeGeometry  />
         <meshStandardMaterial side={THREE.DoubleSide} color={"red"} />
-      </mesh>
+      </mesh> */}
       <mesh ref={tubeMesh}>
         <tubeGeometry args={[curve, 50, 0.5, 64]} ref={tubeRef} />
         <meshStandardMaterial side={THREE.DoubleSide} color={"#a27c57"} />
@@ -72,10 +71,14 @@ export default Mushroom;
 function MushroomCap(props) {
   const capMesh = useRef();
 
+  const roundness = Math.random() * (0.3 - 0.15) + 0.15;
+  const size = Math.random() * (50 - 10) + 10;
+
   const points = [];
   for (let i = 0; i < 10; i++) {
-    points.push(new THREE.Vector2(Math.sin(i * 0.25) * 20, (i - 5) * 2));
+    points.push(new THREE.Vector2(Math.sin(i * roundness) * size, (i - 5) * 2));
   }
+  console.log(props.rotation);
 
   return (
     <mesh
@@ -84,8 +87,10 @@ function MushroomCap(props) {
       rotation={props.rotation}
       position={props.position}
     >
-      <latheGeometry args={[points, 28, 0, Math.PI * 2]} />
-      <meshStandardMaterial color={"#7e4a16"} side={THREE.DoubleSide} />
+      <mesh rotation={[Math.PI * 1, 0, 0]}>
+        <latheGeometry args={[points, 28, 0, Math.PI * 2]} />
+        <meshStandardMaterial color={"#7e4a16"} side={THREE.DoubleSide} />
+      </mesh>
     </mesh>
   );
 }
