@@ -1,22 +1,27 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Plane } from "@react-three/drei";
-
+import { OrbitControls, Environment } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import Lighting from './Lighting'
+
+import Lighting from "./Lighting";
 import Mushroom from "./Mushroom";
+import Floor from "./Floor";
 
 function Experience() {
   return (
     <div className="w-full h-full fixed top-0 left-0  bg-slate-500">
       <Canvas shadows>
+        
         <Perf />
+        
         <OrbitControls />
+
         <Lighting />
+        
+        <Environment background={true} preset="forest" />
         <Mushroom />
-        <mesh receiveShadow position={[0,0,0]}>
-            <boxGeometry args={[10,.2,10]} />
-            <meshStandardMaterial color={"grey"} />
-        </mesh>
+        <Mushroom position={[0, 0, 15]}/>
+        <Mushroom position={[0, 0, -15]}/>
+        <Floor />
       </Canvas>
     </div>
   );
