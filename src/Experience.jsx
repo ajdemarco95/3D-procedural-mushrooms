@@ -9,18 +9,19 @@ import Floor from "./Floor";
 function Experience() {
   return (
     <div className="w-full h-full fixed top-0 left-0  bg-slate-500">
-      <Canvas shadows>
+      <Canvas gl={{localClippingEnabled: true}} shadows>
         
         <Perf />
         
         <OrbitControls />
 
         <Lighting />
-        
         <Environment background={true} preset="forest" />
+
         <Mushroom />
         <Mushroom position={[0, 0, 15]}/>
         <Mushroom position={[0, 0, -15]}/>
+
         <Floor />
       </Canvas>
     </div>

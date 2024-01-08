@@ -4,21 +4,21 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three'
 function Floor() {
 
-    // const props = useTexture({
-    //     map: "/materials/mud-forest/mud_forest_diff_1k.jpg",
-    //     displacementMap: "/materials/mud-forest/mud_forest_disp_1k.jpg",
-    //     aoMap: "/materials/mud-forest/mud_forest_ao_1k.jpg",
-    //     normalMap: "/materials/mud-forest/mud_forest_nor_gl_1k.jpg",
-    //     roughnessMap: "/materials/mud-forest/mud_forest_rough_1k.jpg",
-    // })
-
     const props = useTexture({
-        map: "/materials/brown-mud/brown_mud_02_diff_1k.jpg",
-        displacementMap: "/materials/brown-mud/brown_mud_02_disp_1k.jpg",
-        aoMap: "/materials/brown-mud/brown_mud_02_ao_1k.jpg",
-        normalMap: "/materials/brown-mud/brown_mud_02_nor_gl_1k.jpg",
-        roughnessMap: "/materials/brown-mud/brown_mud_02_rough_1k.jpg",
+        map: "/materials/mud-forest/mud_forest_diff_1k.jpg",
+        displacementMap: "/materials/mud-forest/mud_forest_disp_1k.jpg",
+        aoMap: "/materials/mud-forest/mud_forest_ao_1k.jpg",
+        normalMap: "/materials/mud-forest/mud_forest_nor_gl_1k.jpg",
+        roughnessMap: "/materials/mud-forest/mud_forest_rough_1k.jpg",
     })
+
+    // const props = useTexture({
+    //     map: "/materials/brown-mud/brown_mud_02_diff_1k.jpg",
+    //     displacementMap: "/materials/brown-mud/brown_mud_02_disp_1k.jpg",
+    //     aoMap: "/materials/brown-mud/brown_mud_02_ao_1k.jpg",
+    //     normalMap: "/materials/brown-mud/brown_mud_02_nor_gl_1k.jpg",
+    //     roughnessMap: "/materials/brown-mud/brown_mud_02_rough_1k.jpg",
+    // })
 
     // const props = useTexture({
     //     map: "/materials/stone/coral_stone_wall_diff_4k.jpg",
@@ -29,13 +29,10 @@ function Floor() {
     // })
 
     for ( const item in props) {
-
         props[item].wrapS = THREE.RepeatWrapping;
         props[item].wrapT = THREE.RepeatWrapping;
         const repeatVal = 3
         props[item].repeat.set(repeatVal, repeatVal)
-    
-
     }
 
 
