@@ -42,7 +42,6 @@ function Mushroom(props) {
 
   // Convert the quaternion to Euler angles for the rotation of the mesh
   const rotation = new THREE.Euler().setFromQuaternion(quaternion, "XYZ");
-  //   rotation.x += Math.PI / 2; // Add 90 degrees rotation on X-axis
 
   /**********
    * RENDER *
@@ -51,13 +50,6 @@ function Mushroom(props) {
   return (
     <group position={props.position}>
       <MushroomCap position={capPosition} rotation={rotation} />
-      {/* <mesh
-        position={capPosition}
-        rotation={rotation}
-      >
-        <planeGeometry  />
-        <meshStandardMaterial side={THREE.DoubleSide} color={"red"} />
-      </mesh> */}
       <mesh ref={tubeMesh}>
         <tubeGeometry args={[curve, 50, 0.5, 64]} ref={tubeRef} />
         <meshStandardMaterial side={THREE.DoubleSide} color={"#a27c57"} />
