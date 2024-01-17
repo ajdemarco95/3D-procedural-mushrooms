@@ -70,19 +70,32 @@ function MushroomCap(props) {
   for (let i = 0; i < 10; i++) {
     points.push(new THREE.Vector2(Math.sin(i * roundness) * size, (i - 5) * 2));
   }
-  console.log(props.rotation);
+
 
   return (
-    <mesh
-      scale={0.1}
-      ref={capMesh}
-      rotation={props.rotation}
-      position={props.position}
-    >
-      <mesh rotation={[Math.PI * 1, 0, 0]}>
-        <latheGeometry args={[points, 28, 0, Math.PI * 2]} />
-        <meshStandardMaterial color={"#7e4a16"} side={THREE.DoubleSide} />
+    <group>
+      <mesh
+        scale={0.1}
+        ref={capMesh}
+        rotation={props.rotation}
+        position={props.position}
+      >
+        <mesh rotation={[Math.PI * 1, 0, 0]}>
+          <latheGeometry args={[points, 28, 0, Math.PI * 2]} />
+          <meshStandardMaterial color={"#7e4a16"} side={THREE.FrontSide} />
+        </mesh>
       </mesh>
-    </mesh>
+      <mesh
+        scale={0.1}
+        ref={capMesh}
+        rotation={props.rotation}
+        position={props.position}
+      >
+        <mesh rotation={[Math.PI * 1, 0, 0]}>
+          <latheGeometry args={[points, 28, 0, Math.PI * 2]} />
+          <meshStandardMaterial color={"#a27c57"} side={THREE.BackSide} />
+        </mesh>
+      </mesh>
+    </group>
   );
 }

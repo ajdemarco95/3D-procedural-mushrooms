@@ -9,20 +9,20 @@ import Floor from "./Floor";
 function Experience() {
   return (
     <div className="w-full h-full fixed top-0 left-0  bg-slate-500">
-      <Canvas gl={{localClippingEnabled: true}} shadows>
-        
+      <Canvas>
         <Perf />
-        
+
         <OrbitControls />
 
         <Lighting />
         <Environment background={true} preset="forest" />
 
-        <Mushroom />
-        <Mushroom position={[0, 0, 15]}/>
-        <Mushroom position={[0, 0, -15]}/>
-
-        <Floor />
+        <group position={[0, -1, -25]} rotation={[Math.PI * 0.05, Math.PI * 0.5, 0]}>
+          <Mushroom />
+          <Mushroom position={[0, 0, 15]} />
+          <Mushroom position={[0, 0, -15]} />
+          <Floor />
+        </group>
       </Canvas>
     </div>
   );
